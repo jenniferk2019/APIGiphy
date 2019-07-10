@@ -2,40 +2,54 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Giphy API</title>
-  <style type="text/css">
-    button,
-    div,
-    form,
-    input {
-      margin: 10px;
-    }
-  </style>
+    <meta charset="utf-8">
+    <title>Giphy API</title>
+    <style type="text/css">
+        button,
+        div,
+        form,
+        input {
+            margin: 10px;
+        }
+    </style>
 </head>
 
-<body> <div class="conatiner"><h1>Cosmetic Giphy</h1>
+<body>
+    <div class="conatiner">
+        <h1>Cosmetic Giphy</h1>
 
-<!--Rendered Buttons Place-->
+        <!--Rendered Buttons Place-->
+        <div id="buttons-view"></div>
 
+        <form id="giphy-form">
+            <label for="giphy-input">Add Giphy</label>
+            <input type="text" id="giphy-input">
+            <br>
 
-</div>
+            <!-- Button triggers new gif to be added -->
+            <input id="add-gif" type="submit" value="Add Giphy">
+        </form>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript">
-    // Example queryURL for Giphy API
-    var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=2NcrbDVTlazOxu1yBpZiqA9cbr04c74K";
+        <!-- Gifs will Get Dumped Here -->
+        <div id="movies-view"></div>
 
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) {
-    });
+    </div>
 
-var topics = ["lipstick", "eyeshadow", "blush", "eyeliner", "mascara", "eyebrows", "foundation"]
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        // Example queryURL for Giphy API
+        var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=2NcrbDVTlazOxu1yBpZiqA9cbr04c74K";
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+        });
+
+        var topics = ["lipstick", "eyeshadow", "blush", "eyeliner", "mascara", "eyebrows", "foundation"]
 
 //retrieving the urls for the gifs 
-  </script>
+    </script>
 
 </body>
 
