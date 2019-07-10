@@ -31,12 +31,20 @@
         </form>
 
         <!-- Gifs will Get Dumped Here -->
-        <div id="movies-view"></div>
+        <div id="giphy-view"></div>
 
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
+     
+     // Initial array of movies
+     var topics = ["lipstick", "eyeshadow", "blush", "eyeliner", "mascara", "eyebrows", "foundation"];
+    
+    // displayGIPHYInfo function re-renders the HTML to display the appropriate content
+      function displayGiphyInfo() {
+
+var topics = $(this).attr("data-name");
         // Example queryURL for Giphy API
         var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=2NcrbDVTlazOxu1yBpZiqA9cbr04c74K";
 
@@ -46,7 +54,7 @@
         }).then(function (response) {
         });
 
-        var topics = ["lipstick", "eyeshadow", "blush", "eyeliner", "mascara", "eyebrows", "foundation"]
+        
 
 //retrieving the urls for the gifs 
     </script>
