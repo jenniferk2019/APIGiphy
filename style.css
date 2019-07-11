@@ -1,0 +1,16 @@
+button {
+    margin: 10px;
+}
+
+#gifs-appear-here {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.img1 {
+    flex: 1;
+}
+
+.img2 {
+    flex: 0 0 65%;
+}

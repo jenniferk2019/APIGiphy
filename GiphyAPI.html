@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Makup Gifs</title>
-    <style type="text/css">
-        button,
-        div,
-        form,
-        input {
-            margin: 10px;
-        }
-    </style>
+    <title>💄&nbsp;Makup Gifs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
     <div id="buttons-view">
-        <button class="makeup" data-info="Lashes">Lashes</button>
-        <button class="makeup" data-info="Mascara">Mascara</button>
-        <button class="makeup" data-info="Blush">Blush</button>
-        <button class="makeup" data-info="Lipstick">Lipstick</button>
-        <button class="makeup" data-info="Eyeshadow">Eyeshadow</button>
+            <button type="button" class="makeup" data-info="Lashes">Lashes</button>
+            <button type="button" class="makeup" data-info="Mascara">Mascara</button>
+            <button type="button" class="makeup" data-info="Blush">Blush</button>
+            <button type="button" class="makeup" data-info="Lipstick">Lipstick</button>
+            <button type="button" class="makeup" data-info="Eyeshadow">Eyeshadow</button>
+            <button type="button" class="makeup" data-info="Bronzer">Bronzer</button>
+            <button type="button" class="makeup" data-info="Eyeliner">Eyeliner</button>
     </div>
     <div id="images"></div>
 
@@ -36,61 +32,9 @@
     <div id="gifs-appear-here"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-
-        var topics = ["Lashes", "Mascara", "Blush", "Lipstick", "Eyeshadow"];
-        function renderButtons() {
-
-            $("#buttons-view").empty();
-
-            for (var i = 0; i < topics.length; i++) {
-
-                var a = $("<button>");
-                a.addClass("makeup");
-                a.attr("data-info", topics[i]);
-                a.text(topics[i]);
-
-                $("#buttons-view").append(a);
-            }
-        }
-        $("#add-makeup").on("click", function (event) {
-            event.preventDefault();
-
-            var makeup = $("#makeup-input").val().trim();
-            topics.push(makeup);
-            renderButtons();
-        });
-        renderButtons();
-
-        $(document).on("click", "button", function () {
-            var makeup = $(this).attr("data-info");
-            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-                makeup + "&api_key=2NcrbDVTlazOxu1yBpZiqA9cbr04c74K&limit=10";
-
-                $.ajax({
-               url:queryURL,
-               method: "GET"
-           })
-           .then(function(response) {
-               var results = response.data;
-
-               for (var i = 0; i < results.length; i++) {
-                   var gifDiv = $("<div>");
-
-                   var rating = results[i].rating;
-
-                   var p = $("<p>").text("Rating: " + rating);
-
-                   var makeupImage = $("<img>");
-                   makeupImage.attr("src", results[i].images.fixed_height.url);
-
-                   gifDiv.prepend(p);
-                   gifDiv.prepend(makeupImage);
-
-                   $("#gifs-appear-here").prepend(gifDiv);
-               }
-           })
-        });
+    <script src="gif.js">
+        
     </script>
+
 </body>
 </html>
