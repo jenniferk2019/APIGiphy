@@ -2,8 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>💅&ensp;Cosmetic GIPHY</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Makup Gifs</title>
     <style type="text/css">
         button,
         div,
@@ -15,29 +17,75 @@
 </head>
 
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript"></script>
-
-    <div class="conatiner">
-        <h1>Cosmetic Giphy</h1>
-        <button data-cosmetic="lipstick">lipstick</button>
-        <button data-cosmetic="eyeshadow">eyeshadow</button>
-        <button data-cosmetic="blush">blush</button>
-        <button data-cosmetic="eyeliner">eyeliner</button>
-        <button data-cosmetic="mascara">mascara</button>
-        <button data-cosmetic="eyebrows">eyebrows</button>
-        <button data-cosmetic="foundation">foundation</button>
+    <div id="buttons-view">
+        <button class="makeup" data-info="Lashes">Lashes</button>
+        <button class="makeup" data-info="Mascara">Mascara</button>
+        <button class="makeup" data-info="Blush">Blush</button>
+        <button class="makeup" data-info="Lipstick">Lipstick</button>
+        <button class="makeup" data-info="Eyeshadow">Eyeshadow</button>
     </div>
+    <div id="images"></div>
+
+    <form id="makeup-form">
+        <label for="makeup-input">Add Makeup</label>
+        <input type="text" id="makeup-input">
+        <br>
+        <input id="add-makeup" type="submit" value="Add Makeup">
+    </form>
 
     <!-- <div id="gifs-appear-here"></div> -->
-    <div id="gif-images"></div>
 
-    <form id="cosmetic-form">
-            <label for="cosmetic-input">Add Product</label>
-            <input type="text" id="cosmetic-input">
-            <br>
-            <input id="add-product" type="submit" value="Add Product">
-        </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        var topics = ["Lashes", "Mascara", "Blush", "Lipstick", "Eyeshadow"];
+        function renderButtons() {
+
+            $("#buttons-view").empty();
+
+            for (var i = 0; i < topics.length; i++) {
+
+                var a = $("<button>");
+                a.addClass("makeup");
+                a.attr("data-info", topics[i]);
+                a.text(topics[i]);
+
+                $("#buttons-view").append(a);
+            }
+        }
+        $("#add-makeup").on("click", function (event) {
+            event.preventDefault();
+
+            var makeup = $("#makeup-input").val().trim();
+            topics.push(makeup);
+            renderButtons();
+        });
+        renderButtons();
+
+        $(document).on("click", "button", function () {
+            var product = $(this).attr("data-info");
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+                product + "&api_key=2NcrbDVTlazOxu1yBpZiqA9cbr04c74K&limit=10";
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+                .then(function (response) {
+                    var results = response.data;
+                    for (var i = 0; i < results.length; i++) {
+                        var gifDiv = $("<div>");
+                        var rating = results[i].rating;
+                        var M = $("<m>").text("Rating: " + rating);
+                        var makeupImage = $("<img>");
+                        makeupImage.attr("src", results[i].images.fixed_height.url);
+
+                        gifDiv.prepend(m);
+                        gifDiv.prepend(makeupImage);
+
+                        $("#gifs-appear-here").prepend(gifDiv);
+                    }
+                })
+    </script>
 </body>
-
 </html>
