@@ -20,7 +20,7 @@ button {
 
 body {
     font-family: 'Stardos Stencil', cursive;
-    background-image: url(../APIGiphy/assets/images/gifbg.gif);
+    background-image: url(../images/gifbg.gif);
     background-repeat: no-repeat;
     background-size: cover;
 }
